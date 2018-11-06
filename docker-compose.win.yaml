@@ -3,10 +3,10 @@ version: '3.4'
 services:
 
   caddy:
-    image: abiosoft/caddy
+    image: abiosoft/caddy:latest
     ports:
-      - "80:80"
-      - "443:443"
+      - 80:80
+      - 443:443
     volumes:
       - ./data/caddy/Caddyfile:/etc/Caddyfile
 
@@ -15,41 +15,40 @@ services:
     environment:      
       - POSTGRES_PASSWORD=temporary   
     ports:
-      - "5432:5432"   
+      - 5432:5432
     volumes:
       - postgresql:/var/lib/postgresql/data    
 
   pgadmin:
-    image: dpage/pgadmin4  
+    image: dpage/pgadmin4:latest
     environment:
       - PGADMIN_DEFAULT_EMAIL=user@domain.com
       - PGADMIN_DEFAULT_PASSWORD=temporary
-    ports:
-      - "81:80"
     volumes:
       - ./data/pgadmin:/var/lib/pgadmin
 
   postgrest:
-    image: postgrest/postgrest
-    ports:
-      - "82:3000"
+    image: postgrest/postgrest:latest    
     environment:
-      PGRST_DB_URI: postgresql://postgres:temporary@postgres:5432/cvmData
+      PGRST_DB_URI: postgresql://readonly:pJvykeLXdhCDFs99@postgres:5432/cvmData
       PGRST_DB_SCHEMA: public
-      PGRST_DB_ANON_ROLE: postgres # In production this role should not be the same as the one used for the connection
-      PGRST_SERVER_PROXY_URI: http://localhost:82/
+      PGRST_DB_ANON_ROLE: readonly # In production this role should not be the same as the one used for the connection
+      PGRST_SERVER_PROXY_URI: https://api.cvmfundexplorer.conradoqg.eti.br/
     depends_on:
       - postgres
 
   swagger:
-    image: swaggerapi/swagger-ui
-    ports:
-      - "83:8080"
+    image: swaggerapi/swagger-ui:latest    
     environment:
-      API_URL: http://127.0.0.1:82/
+      PORT: 80
+      API_URL: /
+      BASE_URL: /doc
 
   docker-container-crontab:
     image: conradoqg/cvm-fund-explorer-docker-container-crontab:latest    
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: [ '-d' ]
 
 volumes:
   postgresql:
