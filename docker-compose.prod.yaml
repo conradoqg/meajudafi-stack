@@ -1,0 +1,33 @@
+version: '3.4'
+
+services:
+
+  caddy:    
+    configs:
+      - source: CaddyfileProd
+        target: /etc/Caddyfile    
+
+  postgres:    
+    environment:
+      - POSTGRES_DB=cvmData      
+      - POSTGRES_USER=${POSTGRES_USERNAME}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    ports:
+      - 5432:5432    
+
+  pgadmin:    
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD}
+
+  postgrest:    
+    environment:      
+      - PGRST_DB_URI=postgresql://${POSTGRES_READONLY_USERNAME}:${POSTGRES_READONLY_PASSWORD}@postgres:5432/cvmData
+      - PGRST_DB_SCHEMA=public
+      - PGRST_DB_ANON_ROLE=${POSTGRES_READONLY_USERNAME}
+      - PGRST_SERVER_PROXY_URI=https://api.cvmfundexplorer.conradoqg.eti.br/
+
+
+configs:
+  CaddyfileProd: 
+    file: ./config/Caddyfile.prod

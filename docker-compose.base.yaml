@@ -6,12 +6,17 @@ services:
     image: abiosoft/caddy:latest
     ports:
       - 80:80
-      - 443:443    
+      - 443:443   
+    networks:
+      - stack_internal_network
+ 
 
   postgres:
     image: postgres:11-beta2-alpine    
     volumes:
-      - postgresql:/var/lib/postgresql/data        
+      - postgresql:/var/lib/postgresql/data            
+    networks:
+      - stack_internal_network
 
   pgadmin:
     image: dpage/pgadmin4:latest    
@@ -19,11 +24,15 @@ services:
       - pgadmin:/var/lib/pgadmin
     depends_on:
       - postgres
+    networks:
+      - stack_internal_network
 
   postgrest:
     image: postgrest/postgrest:latest        
     depends_on:
       - postgres
+    networks:
+      - stack_internal_network
 
   swagger:
     image: swaggerapi/swagger-ui:latest    
@@ -31,6 +40,8 @@ services:
       - PORT=80
       - API_URL=/
       - BASE_URL=/doc
+    networks:
+      - stack_internal_network
 
   docker-container-crontab:
     image: conradoqg/cvm-fund-explorer-docker-container-crontab:latest    
@@ -42,4 +53,8 @@ volumes:
   postgresql:
     external: true
   pgadmin:
+    external: true
+
+networks:
+  stack_internal_network:
     external: true
