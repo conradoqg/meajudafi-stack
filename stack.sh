@@ -7,8 +7,11 @@ export COMPOSE_CONVERT_WINDOWS_PATHS=1
 if [ -n "$1" ]; then
     if [ $1 = "deploy" ]; then
 
+        set +e
         POSTGRES_VOLUME_COUNT=$(docker volume ls | grep -c postgres)
         PGADMIN_VOLUME_COUNT=$(docker volume ls | grep -c pgadmin)
+        STACK_INTERNAL_NETWORK_COUNT=$(docker network ls | grep -c stack_internal_network)        
+        set -e
 
         if [ -z "$2" ] || [ $2 = "dev" ]; then        
             ENV=dev    
@@ -50,13 +53,16 @@ if [ -n "$1" ]; then
         if [ "$POSTGRES_VOLUME_COUNT" -eq 0 ]; then
             echo "Creating pgadmin volume"
             docker volume create --name=pgadmin
-        fi
+        fi        
 
-        docker network create --driver overlay --attachable stack_internal_network
+        if [ "$STACK_INTERNAL_NETWORK_COUNT" -eq 0 ]; then
+            echo "Creating stack_internal_network network"
+            docker network create --driver overlay --attachable stack_internal_network
+        fi        
         
         docker stack deploy --compose-file docker-compose.base.yaml --compose-file docker-compose.${ENV}.yaml cvmFundExplorer
-    elif [ $1 = "rm" ]; then
-        docker stack rm cvmFundExplorer
+    elif [ $1 = "rm" ]; then    
+        docker stack rm cvmFundExplorer        
     fi
 else
     echo "Usage: build ACTION ENVIRONMENT NAME WORKER_ARGS"

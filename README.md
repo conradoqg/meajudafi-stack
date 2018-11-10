@@ -186,7 +186,7 @@
     - [X] v1 - Expose only-specific end-points
     - [X] v1 - Create and use read-only user in the front-end
     - [X] v2 - Add ratelimit to the proxy
-    - [ ] v1 - Monitor resource usage
+    - [X] v1 - Monitor resource usage
     - [ ] v2 - Improve ENV variable for worker
     - [ ] v2 - Improve worker container for development
 - [ ] v5 - UX
