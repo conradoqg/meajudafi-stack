@@ -1,72 +1,73 @@
-#!/bin/sh
+#!/bin/bash -e
 
-set -e
+# load the library
+. bashopts.sh # For more information check it out https://gitlab.mbedsys.org/mbedsys/bashopts
 
-export COMPOSE_CONVERT_WINDOWS_PATHS=1
+# Enable backtrace display on error
+#trap 'bashopts_exit_handle' ERR
 
-if [ -n "$1" ]; then
-    if [ $1 = "deploy" ]; then
+# Initialize the library
+bashopts_setup -n $0 -d "Stack manager" -u "$0 [options and commands] [-- [extra args]]" -x
 
-        set +e
-        POSTGRES_VOLUME_COUNT=$(docker volume ls | grep -c postgres)
-        PGADMIN_VOLUME_COUNT=$(docker volume ls | grep -c pgadmin)
-        STACK_INTERNAL_NETWORK_COUNT=$(docker network ls | grep -c stack_internal_network)        
-        set -e
+# Declare the options
+bashopts_declare -n ACTION -l action -o a -d "Action" -t enum -e 'deploy' -e 'remove' -r
+bashopts_declare -n ENV -l environment -o e -d "Environemnt" -t enum -e 'prod' -e 'dev' -r
+bashopts_declare -n PGADMIN_EMAIL -l pgadmin-username -d "PGAdmin email" -t string -v user@domain.com
+bashopts_declare -n PGADMIN_PASSWORD -l pgadmin-password -d "PGAdmin password" -t string -v temporary
+bashopts_declare -n POSTGRES_USERNAME -l postgres-username -d "Postgres username" -t string -v postgres
+bashopts_declare -n POSTGRES_PASSWORD -l postgres-password -d "Postgres password" -t string -v temporary
+bashopts_declare -n POSTGRES_READONLY_USERNAME -l postgres-readonly-username -d "Postgres readonly username" -t string
+bashopts_declare -n POSTGRES_READONLY_PASSWORD -l postgres-readonly-password -d "Postgres readonly password" -t string
 
-        if [ -z "$2" ] || [ $2 = "dev" ]; then        
-            ENV=dev    
-        elif [ $2 = "prod" ]; then
-            ENV=prod        
-            if [ "$PGADMIN_VOLUME_COUNT" -eq 0 ] && [ -z "$PGADMIN_EMAIL" ]; then
-                echo '$PGADMIN_EMAIL is missing'
-                exit 1
-            fi
-            if [ "$PGADMIN_VOLUME_COUNT" -eq 0 ] && [ -z "$PGADMIN_PASSWORD" ]; then
-                echo '$PGADMIN_PASSWORD is missing'
-                exit 1
-            fi
-            if [ "$POSTGRES_VOLUME_COUNT" -eq 0 ] && [ -z "$POSTGRES_USERNAME" ]; then
-                echo '$POSTGRES_USERNAME is missing'
-                exit 1
-            fi
-            if [ "$POSTGRES_VOLUME_COUNT" -eq 0 ] && [ -z "$POSTGRES_PASSWORD" ]; then
-                echo '$POSTGRES_PASSWORD is missing'
-                exit 1
-            fi
-            if [ -z "$POSTGRES_READONLY_USERNAME" ]; then
-                echo '$POSTGRES_READONLY_USERNAME is missing'            
-                exit 1
-            fi
-            if [ -z "$POSTGRES_READONLY_PASSWORD" ]; then
-                echo '$POSTGRES_READONLY_PASSWORD is missing'            
-                exit 1
-            fi
+# Parse arguments
+bashopts_parse_args "$@"
+
+# Process options
+bashopts_process_opts
+
+if [ $ACTION = "deploy" ]; then 
+    if [ $ENV = "dev" ]; then
+        POSTGRES_READONLY_USERNAME="readonly"
+        POSTGRES_READONLY_PASSWORD="KM8Rd9cJ4724nbRW"
+    elif [ $ENV = "prod" ]; then
+        if [ -z "$POSTGRES_READONLY_USERNAME" ]; then
+            echo "POSTGRES_READONLY_USERNAME is missing"
+            exit 1
         fi
-
-        echo "Deploying $ENV environment stack"
-
-        if [ "$POSTGRES_VOLUME_COUNT" -eq 0 ]; then
-            echo "Creating postgresql volume"
-            docker volume create --name=postgresql
+        if [ -z "$POSTGRES_READONLY_PASSWORD" ]; then
+            echo "POSTGRES_READONLY_PASSWORD is missing"
+            exit 1
         fi
-
-        if [ "$POSTGRES_VOLUME_COUNT" -eq 0 ]; then
-            echo "Creating pgadmin volume"
-            docker volume create --name=pgadmin
-        fi        
-
-        if [ "$STACK_INTERNAL_NETWORK_COUNT" -eq 0 ]; then
-            echo "Creating stack_internal_network network"
-            docker network create --driver overlay --attachable stack_internal_network
-        fi        
-        
-        docker stack deploy --compose-file docker-compose.base.yaml --compose-file docker-compose.${ENV}.yaml cvmFundExplorer
-    elif [ $1 = "rm" ]; then    
-        docker stack rm cvmFundExplorer        
     fi
-else
-    echo "Usage: build ACTION ENVIRONMENT NAME WORKER_ARGS"
-    echo ""
-    echo "ACTION = deploy/rm"
-    echo "ENVIRONMENT = dev/prod"    
+
+    echo "Deploying $ENV environment stack"
+
+    echo "Checking volumes"
+    set +e
+    POSTGRES_VOLUME_COUNT=$(docker volume ls | grep -c postgres)
+    PGADMIN_VOLUME_COUNT=$(docker volume ls | grep -c pgadmin)
+
+    echo "Checking network"
+    STACK_INTERNAL_NETWORK_COUNT=$(docker network ls | grep -c stack_internal_network)        
+    set -e
+
+    if [ "$POSTGRES_VOLUME_COUNT" -eq 0 ]; then
+        echo "Creating postgresql volume"
+        docker volume create --name=postgresql
+    fi
+
+    if [ "$POSTGRES_VOLUME_COUNT" -eq 0 ]; then
+        echo "Creating pgadmin volume"
+        docker volume create --name=pgadmin
+    fi        
+
+    if [ "$STACK_INTERNAL_NETWORK_COUNT" -eq 0 ]; then
+        echo "Creating stack_internal_network network"
+        docker network create --driver overlay --attachable stack_internal_network
+    fi     
+
+    export COMPOSE_CONVERT_WINDOWS_PATHS=1
+    docker stack deploy --compose-file docker-compose.base.yaml --compose-file docker-compose.${ENV}.yaml cvmFundExplorer
+elif [ $ACTION = "remove" ]; then
+    docker stack rm cvmFundExplorer
 fi
