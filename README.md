@@ -132,10 +132,10 @@
             - [ ] Top Consistency (Day, Month, Year)
     - [ ] Fund list page
         - [ ] Changes to the fund list feature
-            - [ ] v2 - Remove search button from search panel
-            - [ ] v2 - Add net worth to the fund item
-            - [ ] v2 - Add number of quoteholders
-            - [ ] v2 - Add benchmark
+            - [X] v2 - Remove search button from search panel
+            - [X] v2 - Add net worth to the fund item
+            - [X] v2 - Add number of quoteholders
+            - [X] v2 - Add benchmark
         - [ ] Changes to the fund item feature
             - [ ] v2 - Add time range buttons to choose which column will be used
             - [ ] v2 - Add benchmark data
@@ -146,6 +146,9 @@
             - [X] v1 - Add missing fields to filter
             - [ ] v2 - Add filter suggestions
             - [ ] v2 - Filter options must be dinamically determined
+            - [ ] v2 - Add net worth to the fund item
+            - [ ] v2 - Add number of quoteholders
+            - [ ] v2 - Add benchmark
         - [ ] Changes to the order feature
             - [X] v1 - Add missing fields to order
             - [X] v1 - Replace (ASC) and (DESC) by icons
@@ -187,8 +190,8 @@
     - [X] v1 - Create and use read-only user in the front-end
     - [X] v2 - Add ratelimit to the proxy
     - [X] v1 - Monitor resource usage
-    - [ ] v2 - Improve ENV variable for worker
-    - [ ] v2 - Improve worker container for development
+    - [X] v2 - Improve ENV variable for worker
+    - [X] v2 - Improve worker container for development
 - [ ] v5 - UX
     - [ ] Optimizations
         - [ ] Check response times
