@@ -137,11 +137,12 @@
             - [X] v2 - Add number of quoteholders
             - [X] v2 - Add benchmark
         - [ ] Changes to the fund item feature
-            - [ ] v2 - Add time range buttons to choose which column will be used
+            - [X] v2 - Add time range buttons to choose which column will be used
             - [ ] v2 - Add benchmark data
             - [ ] v2 - Add benchmark button to choose the benchmark
         - [ ] Changes to the search feature
             - [X] v1 - Remove accents from the search term and results
+            - [X] v2 - Move search button to the fund list header
         - [ ] Changes to the filter feature
             - [X] v1 - Add missing fields to filter
             - [ ] v2 - Add filter suggestions
