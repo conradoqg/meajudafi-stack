@@ -180,8 +180,8 @@
         - [ ] v2 - Add YTD, MTD, 1M, 3M, 6M performance, risk, sharpe and consistency to investment return table
         - [ ] v2 - Add YTD, MTD, 1M, 3M, 6M quote performance, risk, sharpe and consistency to investment return table
         - [ ] v2 - Add 1Y, 2Y, 3Y quote performance to investment return table
-        - [ ] v2 - Add nr_cotst to investment_return
-        - [ ] v2 - Add vl_patrim_liq to investment_return
+        - [X] v2 - Add nr_cotst to investment_return
+        - [X] v2 - Add vl_patrim_liq to investment_return
         - [ ] v2 - Add moviment to investment_return (captc_dia+rest_dia)
 - [ ] Deployment
     - [X] v1 - Worker container
@@ -189,10 +189,11 @@
     - [X] v1 - Scheduler container
     - [X] v1 - Expose only-specific end-points
     - [X] v1 - Create and use read-only user in the front-end
-    - [X] v2 - Add ratelimit to the proxy
+    - [ ] v2 - Add ratelimit to the proxy
     - [X] v1 - Monitor resource usage
     - [X] v2 - Improve ENV variable for worker
     - [X] v2 - Improve worker container for development
+    - [X] v2 - Migrations
 - [ ] v5 - UX
     - [ ] Optimizations
         - [ ] Check response times
