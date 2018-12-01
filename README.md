@@ -169,9 +169,10 @@
         - [ ] Improve UI for mobile 
 - [ ] Back-end
     - [ ] Worker
-        - [ ] v2 - Get Ibovespa Index
-        - [ ] v2 - Get IPCA index
+        - [X] v2 - Get Ibovespa Index
+        - [X] v2 - Get IPCA index
         - [ ] v2 - Get IGP* index
+        - [X] v2 - Get SELIC index
         - [ ] v2 - Add Ibovespa Index quote to investment return table
         - [ ] v2 - Add CDI quote to investment return table
         - [ ] v2 - Add IPCA quote to investment return table
