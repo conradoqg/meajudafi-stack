@@ -138,7 +138,7 @@
             - [X] v2 - Add benchmark
         - [ ] Changes to the fund item feature
             - [X] v2 - Add time range buttons to choose which column will be used
-            - [ ] v2 - Add benchmark data
+            - [X] v2 - Add benchmark data
             - [ ] v2 - Add benchmark button to choose the benchmark
         - [ ] Changes to the search feature
             - [X] v1 - Remove accents from the search term and results
@@ -195,6 +195,7 @@
     - [X] v2 - Improve ENV variable for worker
     - [X] v2 - Improve worker container for development
     - [X] v2 - Migrations
+    - [X] v2 - Improve bundle size
 - [ ] v5 - UX
     - [ ] Optimizations
         - [ ] Check response times
