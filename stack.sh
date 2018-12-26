@@ -1,4 +1,6 @@
-#!/bin/bash -e
+#!/bin/bash
+
+set -e
 
 # load the library
 . bashopts.sh # For more information check it out https://gitlab.mbedsys.org/mbedsys/bashopts
@@ -42,14 +44,12 @@ if [ $ACTION = "deploy" ]; then
 
     echo "Deploying $ENV environment stack"
 
-    echo "Checking volumes"
-    set +e
-    POSTGRES_VOLUME_COUNT=$(docker volume ls | grep -c postgres)
-    PGADMIN_VOLUME_COUNT=$(docker volume ls | grep -c pgadmin)
+    echo "Checking volumes"    
+    POSTGRES_VOLUME_COUNT=$(docker volume ls | grep -c postgres || true)
+    PGADMIN_VOLUME_COUNT=$(docker volume ls | grep -c pgadmin || true)
 
     echo "Checking network"
-    STACK_INTERNAL_NETWORK_COUNT=$(docker network ls | grep -c stack_internal_network)        
-    set -e
+    STACK_INTERNAL_NETWORK_COUNT=$(set +e docker network ls | grep -c stack_internal_network || true)        
 
     if [ "$POSTGRES_VOLUME_COUNT" -eq 0 ]; then
         echo "Creating postgresql volume"
