@@ -1,3 +1,5 @@
+# cmv-fund-explorer-stack
+
 ## Planning
 
 ### Data cleaning and transforming
@@ -139,17 +141,17 @@
         - [ ] Changes to the fund item feature
             - [X] v2 - Add time range buttons to choose which column will be used
             - [X] v2 - Add benchmark data
-            - [ ] v2 - Add benchmark button to choose the benchmark
+            - [X] v2 - Add benchmark button to choose the benchmark
         - [ ] Changes to the search feature
             - [X] v1 - Remove accents from the search term and results
             - [X] v2 - Move search button to the fund list header
         - [ ] Changes to the filter feature
             - [X] v1 - Add missing fields to filter
-            - [ ] v2 - Add filter suggestions
-            - [ ] v2 - Filter options must be dinamically determined
-            - [ ] v2 - Add net worth to the fund item
-            - [ ] v2 - Add number of quoteholders
-            - [ ] v2 - Add benchmark
+            - [ ] v3 - Add filter suggestions
+            - [X] v2 - Filter options must be dinamically determined
+            - [X] v2 - Add net worth
+            - [X] v2 - Add number of quoteholders
+            - [X] v2 - Add benchmark
         - [ ] Changes to the order feature
             - [X] v1 - Add missing fields to order
             - [X] v1 - Replace (ASC) and (DESC) by icons
@@ -171,10 +173,10 @@
     - [ ] Worker
         - [X] v2 - Get Ibovespa Index
         - [X] v2 - Get IPCA index
-        - [ ] v2 - Get IGP* index
+        - [X] v2 - Get IGP* index
         - [X] v2 - Get SELIC index
-        - [ ] v2 - Add Ibovespa Index quote to investment return table
-        - [ ] v2 - Add CDI quote to investment return table
+        - [X] v2 - Add Ibovespa Index quote to investment return table
+        - [X] v2 - Add CDI quote to investment return table
         - [ ] v2 - Add IPCA quote to investment return table
         - [ ] v2 - Add IGP* quote to investment return table
         - [X] v1 - Add an unaccented fund name to inf_cadastral    
@@ -201,3 +203,21 @@
         - [ ] Check response times
 
 
+## Troubleshooting
+Fix 15 minutes connection broken:
+
+```
+# docker run --net=host --ipc=host --uts=host --pid=host -it --security-opt=seccomp=unconfined --privileged --rm -v /:/host alpine /bin/sh
+
+# chroot /host
+
+# echo "net.ipv4.tcp_keepalive_time = 600" >> /etc/sysctl.d/00-alpine.conf
+# echo "net.ipv4.tcp_keepalive_intvl = 30" >> /etc/sysctl.d/00-alpine.conf
+# echo "net.ipv4.tcp_keepalive_probes = 10" >> /etc/sysctl.d/00-alpine.conf
+
+# sysctl -p /etc/sysctl.d/00-alpine.conf
+
+or
+
+# docker run --net=host --ipc=host --uts=host --pid=host -it --security-opt=seccomp=unconfined --privileged --rm -v /:/host alpine /bin/sh -c "chroot /host && echo \"net.ipv4.tcp_keepalive_time = 600\" >> /etc/sysctl.d/00-alpine.conf && echo \"net.ipv4.tcp_keepalive_intvl = 30\" >> /etc/sysctl.d/00-alpine.conf && echo "net.ipv4.tcp_keepalive_probes = 10" >> /etc/sysctl.d/00-alpine.conf && sysctl -p /etc/sysctl.d/00-alpine.conf"
+```
