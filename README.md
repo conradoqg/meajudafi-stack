@@ -147,7 +147,7 @@
             - [X] v2 - Move search button to the fund list header
         - [ ] Changes to the filter feature
             - [X] v1 - Add missing fields to filter
-            - [ ] v3 - Add filter suggestions
+            - [X] v2 - Add filter suggestions
             - [X] v2 - Filter options must be dinamically determined
             - [X] v2 - Add net worth
             - [X] v2 - Add number of quoteholders
@@ -182,7 +182,7 @@
         - [X] v1 - Add an unaccented fund name to inf_cadastral    
         - [ ] v2 - Add YTD, MTD, 1M, 3M, 6M performance, risk, sharpe and consistency to investment return table
         - [ ] v2 - Add YTD, MTD, 1M, 3M, 6M quote performance, risk, sharpe and consistency to investment return table
-        - [ ] v2 - Add 1Y, 2Y, 3Y quote performance to investment return table
+        - [X] v2 - Add 1Y, 2Y, 3Y quote performance to investment return table
         - [X] v2 - Add nr_cotst to investment_return
         - [X] v2 - Add vl_patrim_liq to investment_return
         - [ ] v2 - Add moviment to investment_return (captc_dia+rest_dia)
