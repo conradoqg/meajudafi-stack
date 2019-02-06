@@ -1,0 +1,31 @@
+[
+    {
+        "type": 1,
+        "title": "CVM Fund Explorer Worker Migrate",
+        "description": "CVM Fund Explorer Worker Migrate",
+        "image": "conradoqg/cvm-fund-explorer-workers",
+        "name": "migrate",
+        "command": "run migrate",
+        "env": [
+            {
+                "name": "CONNECTION_STRING",
+                "label": "Connection string to the database",
+                "default": "postgresql://postgres:temporary@postgres:5432/cvmData",
+                "preset": true
+            }
+        ],
+        "network": "stack_internal_network",
+        "volumes": [
+            {
+                "worker_volume_all": "/cvm-fund-explorer-workers/db"
+            }
+        ],
+        "labels": [
+            {
+                "name": "cron.schedule",
+                "value": "0 0 0 * * ?"
+            }
+        ],
+        "restart_policy": "no"
+    }
+]

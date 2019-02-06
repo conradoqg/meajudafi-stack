@@ -155,7 +155,7 @@
         - [ ] Changes to the order feature
             - [X] v1 - Add missing fields to order
             - [X] v1 - Replace (ASC) and (DESC) by icons
-        - [ ] v2 - Add column selector
+        - [ ] v3 - Add column selector
         - [ ] Changes to the code
             - [X] v1 - Componentize to an API lib
             - [X] v1 - Reorganize state
@@ -177,15 +177,15 @@
         - [X] v2 - Get SELIC index
         - [X] v2 - Add Ibovespa Index quote to investment return table
         - [X] v2 - Add CDI quote to investment return table
-        - [ ] v2 - Add IPCA quote to investment return table
-        - [ ] v2 - Add IGP* quote to investment return table
+        - [X] v2 - Add IPCA quote to investment return table
+        - [X] v2 - Add IGP* quote to investment return table
         - [X] v1 - Add an unaccented fund name to inf_cadastral    
-        - [ ] v2 - Add YTD, MTD, 1M, 3M, 6M performance, risk, sharpe and consistency to investment return table
-        - [ ] v2 - Add YTD, MTD, 1M, 3M, 6M quote performance, risk, sharpe and consistency to investment return table
+        - [X] v2 - Add YTD, MTD, 1M, 3M, 6M performance, risk, sharpe and consistency to investment return table
+        - [X] v2 - Add YTD, MTD, 1M, 3M, 6M quote performance, risk, sharpe and consistency to investment return table
         - [X] v2 - Add 1Y, 2Y, 3Y quote performance to investment return table
         - [X] v2 - Add nr_cotst to investment_return
         - [X] v2 - Add vl_patrim_liq to investment_return
-        - [ ] v2 - Add moviment to investment_return (captc_dia+rest_dia)
+        - [X] v2 - Add moviment to investment_return (captc_dia+rest_dia)
 - [ ] Deployment
     - [X] v1 - Worker container
     - [X] v1 - Front-end deploy
