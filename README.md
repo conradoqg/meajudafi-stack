@@ -159,7 +159,7 @@
         - [ ] Changes to the code
             - [X] v1 - Componentize to an API lib
             - [X] v1 - Reorganize state
-            - [ ] v2 - Componentize fund listing
+            - [ ] v3 - Componentize fund listing
             - [X] v1 - Componentize ui parts in separate components
             - [X] v1 - Add loading state
             - [X] v1 - Add error handling
@@ -192,7 +192,7 @@
     - [X] v1 - Scheduler container
     - [X] v1 - Expose only-specific end-points
     - [X] v1 - Create and use read-only user in the front-end
-    - [ ] v2 - Add ratelimit to the proxy
+    - [ ] v4 - Add ratelimit to the proxy
     - [X] v1 - Monitor resource usage
     - [X] v2 - Improve ENV variable for worker
     - [X] v2 - Improve worker container for development
