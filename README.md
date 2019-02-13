@@ -119,8 +119,7 @@
 
 - [ ] Front-end
     - [ ] Main page
-        - [X] v1 - Add github link
-        - [ ] v2 - Add about
+        - [X] v1 - Add github link        
         - [X] v1 - Remove inexistent links
     - [ ] v3 - Indicators page
         - [ ] Chart feature
