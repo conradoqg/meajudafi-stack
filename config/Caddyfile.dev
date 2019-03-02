@@ -1,29 +1,10 @@
 http://cvmfundexplorer.conradoqg.eti.br {
-    proxy / cvmfundexplorer.conradoqg.eti.br:9966 {
-        websocket
-        transparent
-    }        
-}
-
-https://cvmfundexplorer.conradoqg.eti.br {
-    tls self_signed
     proxy / localhost:9966 {
         transparent
     }        
 }
 
-http://api.cvmfundexplorer.conradoqg.eti.br {    
-    proxy / postgrest:3000 {
-        transparent
-    }        
-
-    proxy /doc swagger:80 {
-        transparent
-    }    
-}
-
-https://api.cvmfundexplorer.conradoqg.eti.br {
-    tls self_signed
+http://api.cvmfundexplorer.conradoqg.eti.br {
     proxy / postgrest:3000 {
         transparent
     }        
@@ -34,13 +15,6 @@ https://api.cvmfundexplorer.conradoqg.eti.br {
 }
 
 http://pgadmin.cvmfundexplorer.conradoqg.eti.br {    
-    proxy / pgadmin:80 {
-        transparent
-    }
-}
-
-https://pgadmin.cvmfundexplorer.conradoqg.eti.br {
-    tls self_signed
     proxy / pgadmin:80 {
         transparent
     }

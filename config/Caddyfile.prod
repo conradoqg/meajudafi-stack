@@ -1,18 +1,10 @@
-http://cvmfundexplorer.conradoqg.eti.br {
-    redir https://cvmfundexplorer.conradoqg.eti.br{uri}
-}
-
-https://cvmfundexplorer.conradoqg.eti.br {    
+http://cvmfundexplorer.conradoqg.eti.br {    
     proxy / cvmfundexplorer.conradoqg.eti.br.s3-website-sa-east-1.amazonaws.com {
         transparent
     }        
 }
 
-http://api.cvmfundexplorer.conradoqg.eti.br {
-    redir https://api.cvmfundexplorer.conradoqg.eti.br{uri}
-}
-
-https://api.cvmfundexplorer.conradoqg.eti.br {    
+http://api.cvmfundexplorer.conradoqg.eti.br {    
     proxy / postgrest:3000 {
         transparent
     }        
@@ -22,11 +14,7 @@ https://api.cvmfundexplorer.conradoqg.eti.br {
     }    
 }
 
-http://pgadmin.cvmfundexplorer.conradoqg.eti.br {
-    redir https://pgadmin.cvmfundexplorer.conradoqg.eti.br{uri}
-}
-
-https://pgadmin.cvmfundexplorer.conradoqg.eti.br {    
+http://pgadmin.cvmfundexplorer.conradoqg.eti.br {    
     proxy / pgadmin:80 {
         transparent
     }

@@ -49,7 +49,7 @@ if [ $ACTION = "deploy" ]; then
     PGADMIN_VOLUME_COUNT=$(docker volume ls | grep -c pgadmin || true)
 
     echo "Checking network"
-    STACK_INTERNAL_NETWORK_COUNT=$(set +e docker network ls | grep -c stack_internal_network || true)        
+    STACK_INTERNAL_NETWORK_COUNT=$(docker network ls | grep -c stack_internal_network || true)        
 
     if [ "$POSTGRES_VOLUME_COUNT" -eq 0 ]; then
         echo "Creating postgresql volume"
@@ -59,7 +59,7 @@ if [ $ACTION = "deploy" ]; then
     if [ "$POSTGRES_VOLUME_COUNT" -eq 0 ]; then
         echo "Creating pgadmin volume"
         docker volume create --name=pgadmin
-    fi        
+    fi    
 
     if [ "$STACK_INTERNAL_NETWORK_COUNT" -eq 0 ]; then
         echo "Creating stack_internal_network network"
