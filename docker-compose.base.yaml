@@ -34,7 +34,7 @@ services:
       - stack_internal_network
 
   swagger:
-    image: swaggerapi/swagger-ui:latest    
+    image: swaggerapi/swagger-ui:v3.20.9   
     environment:
       - PORT=80
       - API_URL=/
