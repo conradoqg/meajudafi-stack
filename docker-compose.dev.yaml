@@ -29,7 +29,7 @@ services:
       - PGRST_DB_SCHEMA=public
       - PGRST_DB_ANON_ROLE=readonly
       - PGRST_SERVER_PROXY_URI=https://api.cvmfundexplorer.conradoqg.eti.br/
-
+      - PGRST_DB_EXTRA_SEARCH_PATH=public,private
 
 configs:
   CaddyfileDev: 

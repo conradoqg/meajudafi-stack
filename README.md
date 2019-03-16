@@ -118,44 +118,45 @@
 ### TODO
 
 - [ ] Front-end
-    - [ ] Main page
+    - [X] Main page
         - [X] v1 - Add github link        
         - [X] v1 - Remove inexistent links
-    - [ ] v3 - Indicators page
-        - [ ] Chart feature
-            - [ ] Indicators (CDI, Ibovesp, IPCA, IGM*)
-            - [ ] Time range
-            - [ ] Add Great Looser (Day, Month, Year)
-            - [ ] Great Winners (Day, Month, Year)
-            - [ ] Largest (Day, Month, Year)
-            - [ ] Top Performers (Day, Month, Year)
-            - [ ] Top Performer/Risk Ratio (Day, Month, Year)
-            - [ ] Top Consistency (Day, Month, Year)
+    - [X] v3 - Indicators page
+        - [X] Chart feature
+            - [X] Indicators (CDI, Ibovesp, IPCA, IGM*)
+            - [X] Time range
+            - [X] Add Great Looser (Day, Month, Year)
+            - [X] Great Winners (Day, Month, Year)
+            - [X] Largests (Month, Year)
+            - [X] Smallests
+            - [X] Top Performers (Day, Month, Year)
+            - [X] Top Performer/Risk Ratio (Day, Month, Year)
+            - [X] Top Consistency (Day, Month, Year)
     - [ ] Fund list page
-        - [ ] Changes to the fund list feature
+        - [X] Changes to the fund list feature
             - [X] v2 - Remove search button from search panel
             - [X] v2 - Add net worth to the fund item
             - [X] v2 - Add number of quoteholders
             - [X] v2 - Add benchmark
-        - [ ] Changes to the fund item feature
+        - [X] Changes to the fund item feature
             - [X] v2 - Add time range buttons to choose which column will be used
             - [X] v2 - Add benchmark data
             - [X] v2 - Add benchmark button to choose the benchmark
-        - [ ] Changes to the search feature
+        - [X] Changes to the search feature
             - [X] v1 - Remove accents from the search term and results
             - [X] v2 - Move search button to the fund list header
-        - [ ] Changes to the filter feature
+        - [X] Changes to the filter feature
             - [X] v1 - Add missing fields to filter
             - [X] v2 - Add filter suggestions
             - [X] v2 - Filter options must be dinamically determined
             - [X] v2 - Add net worth
             - [X] v2 - Add number of quoteholders
             - [X] v2 - Add benchmark
-        - [ ] Changes to the order feature
+        - [X] Changes to the order feature
             - [X] v1 - Add missing fields to order
             - [X] v1 - Replace (ASC) and (DESC) by icons
         - [ ] v3 - Add column selector
-        - [ ] Changes to the code
+        - [X] Changes to the code
             - [X] v1 - Componentize to an API lib
             - [X] v1 - Reorganize state
             - [ ] v3 - Componentize fund listing
@@ -168,8 +169,8 @@
         - [ ] Add bubble chart
     - [ ] v5 - Miscellaneous
         - [ ] Improve UI for mobile 
-- [ ] Back-end
-    - [ ] Worker
+- [X] Back-end
+    - [X] Worker
         - [X] v2 - Get Ibovespa Index
         - [X] v2 - Get IPCA index
         - [X] v2 - Get IGP* index
