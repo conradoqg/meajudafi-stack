@@ -1,9 +1,12 @@
+http://cvmfundexplorer.conrado.dev,
 http://cvmfundexplorer.conradoqg.eti.br {    
     proxy / cvmfundexplorer.conradoqg.eti.br.s3-website-sa-east-1.amazonaws.com {
         transparent
+        header_upstream Host "cvmfundexplorer.conradoqg.eti.br"
     }        
 }
 
+http://api.cvmfundexplorer.conrado.dev,
 http://api.cvmfundexplorer.conradoqg.eti.br {    
     proxy / postgrest:3000 {
         transparent
@@ -14,6 +17,7 @@ http://api.cvmfundexplorer.conradoqg.eti.br {
     }    
 }
 
+http://pgadmin.cvmfundexplorer.conrado.dev,
 http://pgadmin.cvmfundexplorer.conradoqg.eti.br {    
     proxy / pgadmin:80 {
         transparent

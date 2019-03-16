@@ -1,6 +1,7 @@
 http://cvmfundexplorer.conradoqg.eti.br {
-    proxy / localhost:9966 {
+    proxy / 192.168.1.3:9966 {
         transparent
+        websocket
     }        
 }
 
