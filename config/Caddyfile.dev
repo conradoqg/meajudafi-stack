@@ -1,18 +1,14 @@
-http://cvmfundexplorer.conrado.dev,
 http://meajudafi.com.br,
-http://www.meajudafi.com.br,
-http://cvmfundexplorer.conradoqg.eti.br {
+http://www.meajudafi.com.br, {
     proxy / 192.168.1.3:9966 {
         transparent
         websocket
     }        
 }
 
-http://api.cvmfundexplorer.conrado.dev,
-http://api.meajudafi.com.br,
-http://api.cvmfundexplorer.conradoqg.eti.br {
+http://api.meajudafi.com.br {    
     proxy / postgrest:3000 {
-        transparent
+        transparent        
     }        
 
     proxy /doc swagger:80 {
@@ -20,9 +16,7 @@ http://api.cvmfundexplorer.conradoqg.eti.br {
     }    
 }
 
-http://pgadmin.cvmfundexplorer.conrado.dev,
-http://pgadmin.meajudafi.com.br,
-http://pgadmin.cvmfundexplorer.conradoqg.eti.br {    
+http://pgadmin.meajudafi.com.br {    
     proxy / pgadmin:80 {
         transparent
     }

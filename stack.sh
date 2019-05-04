@@ -67,7 +67,7 @@ if [ $ACTION = "deploy" ]; then
     fi     
 
     export COMPOSE_CONVERT_WINDOWS_PATHS=1
-    docker stack deploy --compose-file docker-compose.base.yaml --compose-file docker-compose.${ENV}.yaml cvmFundExplorer
+    docker stack deploy --compose-file docker-compose.base.yaml --compose-file docker-compose.${ENV}.yaml meajudafi
 elif [ $ACTION = "remove" ]; then
-    docker stack rm cvmFundExplorer
+    docker stack rm meajudafi
 fi
