@@ -1,11 +1,3 @@
-http://meajudafi.com.br,
-http://www.meajudafi.com.br {    
-    proxy / cvmfundexplorer.conradoqg.eti.br.s3-website-sa-east-1.amazonaws.com {
-        transparent
-        header_upstream Host "cvmfundexplorer.conradoqg.eti.br"
-    }        
-}
-
 http://api.meajudafi.com.br {        
     proxy / postgrest:3000 {
         transparent
