@@ -42,6 +42,14 @@ if [ $ACTION = "deploy" ]; then
         fi
     fi
 
+    echo "Settings"
+    echo "PGADMIN_EMAIL: $PGADMIN_EMAIL"
+    echo "PGADMIN_PASSWORD: $PGADMIN_PASSWORD"
+    echo "POSTGRES_USERNAME: $POSTGRES_USERNAME"
+    echo "POSTGRES_PASSWORD: $POSTGRES_PASSWORD"
+    echo "POSTGRES_READONLY_USERNAME: $POSTGRES_READONLY_USERNAME"
+    echo "POSTGRES_READONLY_PASSWORD: $POSTGRES_READONLY_PASSWORD"
+
     echo "Deploying $ENV environment stack"
 
     echo "Checking volumes"    
@@ -67,7 +75,14 @@ if [ $ACTION = "deploy" ]; then
     fi     
 
     export COMPOSE_CONVERT_WINDOWS_PATHS=1
-    docker stack deploy --compose-file docker-compose.base.yaml --compose-file docker-compose.${ENV}.yaml meajudafi
+    env \
+        PGADMIN_EMAIL=$PGADMIN_EMAIL \
+        PGADMIN_PASSWORD=$PGADMIN_PASSWORD \
+        POSTGRES_USERNAME=$POSTGRES_USERNAME \
+        POSTGRES_PASSWORD=$POSTGRES_PASSWORD \
+        POSTGRES_READONLY_USERNAME=$POSTGRES_READONLY_USERNAME \
+        POSTGRES_READONLY_PASSWORD=$POSTGRES_READONLY_PASSWORD \
+        docker stack deploy --compose-file docker-compose.base.yaml --compose-file docker-compose.${ENV}.yaml meajudafi
 elif [ $ACTION = "remove" ]; then
     docker stack rm meajudafi
 fi
