@@ -2,10 +2,10 @@ version: '3.4'
 
 services:
 
-  caddy:    
+  nginx:
     configs:
-      - source: CaddyfileProd
-        target: /etc/Caddyfile    
+      - source: NginxConfProd
+        target: /etc/nginx/nginx.conf 
 
   postgres:    
     environment:
@@ -28,5 +28,5 @@ services:
 
 
 configs:
-  CaddyfileProd: 
-    file: ./config/Caddyfile.prod
+  NginxConfProd: 
+    file: ./config/nginx.conf.prod

@@ -2,13 +2,13 @@ version: '3.4'
 
 services:
 
-  caddy:
-    image: abiosoft/caddy:latest
+  nginx:
+    image: nginx
     ports:
       - 8080:80      
     networks:
       - stack_internal_network
-      - conradodev_default
+      - conradodev_default    
 
   postgres:
     image: postgres:11-alpine    
