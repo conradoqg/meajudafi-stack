@@ -1,0 +1,16 @@
+# kubetpl:syntax:$
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  namespace: meajudafi
+  name: swagger-ingress
+spec:
+  rules:
+  - host: api.meajudafi.com.br
+    http:
+      paths:
+      - path: /doc
+        backend:
+          serviceName: swagger-service
+          servicePort: 80

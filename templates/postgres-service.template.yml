@@ -1,0 +1,15 @@
+# kubetpl:syntax:$
+
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: meajudafi
+  name: postgres-service
+  labels:
+    app: postgres
+spec:
+  ports:
+  - port: 5432        
+  clusterIP: None
+  selector:
+    app: postgres

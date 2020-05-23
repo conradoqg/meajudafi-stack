@@ -1,0 +1,51 @@
+# kubetpl:syntax:$
+# kubetpl:set:POSTGRES_DB=cvmData
+# kubetpl:set:POSTGRES_READONLY_USERNAME=readonly
+# kubetpl:set:POSTGRES_READONLY_PASSWORD=pJvykeLXdhCDFs99
+# kubetpl:set:CACHE_CONFIG=nginx.dev.conf
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: meajudafi
+  name: postgrest-deployment
+  labels:
+    app: postgrest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgrest
+  template:
+    metadata:
+      labels:
+        app: postgrest
+    spec:
+      containers:
+      - name: postgrest-pod
+        image: postgrest/postgrest:latest
+        ports:
+        - containerPort: 3000
+        env:
+          - name: PGRST_DB_URI
+            value: postgresql://$POSTGRES_READONLY_USERNAME:$POSTGRES_READONLY_PASSWORD@postgres-statefulset-0.postgres-service:5432/$POSTGRES_DB
+          - name: PGRST_DB_SCHEMA
+            value: public
+          - name: PGRST_DB_ANON_ROLE
+            value: $POSTGRES_READONLY_USERNAME
+          - name: PGRST_SERVER_PROXY_URI
+            value: https://api.meajudafi.com.br/
+          - name: PGRST_DB_EXTRA_SEARCH_PATH
+            value: public,private
+      - name: cache-pod
+        image: nginx
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: nginx-config
+          mountPath: /etc/nginx/nginx.conf
+          subPath: $CACHE_CONFIG
+      volumes:
+      - name: nginx-config
+        configMap:
+          name: nginx-config

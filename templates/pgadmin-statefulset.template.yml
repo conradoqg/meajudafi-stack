@@ -1,0 +1,44 @@
+# kubetpl:syntax:$
+# kubetpl:set:PGADMIN_DEFAULT_EMAIL=user@domain.com
+# kubetpl:set:PGADMIN_DEFAULT_PASSWORD=temporary
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  namespace: meajudafi
+  name: pgadmin-statefulset  
+spec:
+  selector:
+    matchLabels:
+      app: pgadmin
+  serviceName: pgadmin-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: pgadmin
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: pgadmin-pod
+        image: dpage/pgadmin4:latest 
+        ports:
+        - containerPort: 80
+          name: http
+        volumeMounts:
+        - name: pgadmin-data
+          mountPath: /var/lib/pgadmin
+        env:
+          - name: PGADMIN_DEFAULT_EMAIL
+            value: $PGADMIN_DEFAULT_EMAIL
+          - name: PGADMIN_DEFAULT_PASSWORD
+            value: $PGADMIN_DEFAULT_PASSWORD
+  volumeClaimTemplates:
+  - metadata:
+      name: pgadmin-data
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "standard"
+      resources:
+        requests:
+          storage: 300Gi      

@@ -1,0 +1,43 @@
+# kubetpl:syntax:$
+# kubetpl:set:POSTGRES_DB=cvmData
+# kubetpl:set:POSTGRES_USER=postgres
+# kubetpl:set:POSTGRES_PASSWORD=temporary
+# kubetpl:set:POSTGRES_READONLY_USERNAME=readonly
+# kubetpl:set:POSTGRES_READONLY_PASSWORD=pJvykeLXdhCDFs99
+# kubetpl:set:EOD_TOKEN=
+
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  namespace: meajudafi
+  name: worker-all-cronjob
+spec:
+  schedule: "15 18 * * *"
+  failedJobsHistoryLimit: 2
+  concurrencyPolicy: "Replace"
+  successfulJobsHistoryLimit: 2
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: worker-migration-pod
+            image: conradoqg/cvm-fund-explorer-workers        
+            args: ["run",  "all", "sampleData", "interestingFundsOnly"]
+            env:
+              - name: CONNECTION_STRING
+                value: postgresql://$POSTGRES_USER:$POSTGRES_PASSWORD@postgres-statefulset-0.postgres-service:5432/$POSTGRES_DB          
+              - name: POSTGRES_READONLY_USERNAME
+                value: $POSTGRES_READONLY_USERNAME
+              - name: POSTGRES_READONLY_PASSWORD
+                value: $POSTGRES_READONLY_PASSWORD
+              - name: EOD_TOKEN
+                value: $EOD_TOKEN
+            volumeMounts:
+              - name: worker-all-data
+                mountPath: /cvm-fund-explorer-workers/db
+          volumes:
+          - name: worker-all-data
+            persistentVolumeClaim:
+              claimName: worker-all-pvc
+          restartPolicy: OnFailure

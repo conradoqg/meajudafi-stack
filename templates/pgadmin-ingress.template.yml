@@ -1,0 +1,16 @@
+# kubetpl:syntax:$
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  namespace: meajudafi
+  name: pgadmin-ingress
+spec:
+  rules:
+  - host: pgadmin.meajudafi.com.br
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: pgadmin-service
+          servicePort: 80

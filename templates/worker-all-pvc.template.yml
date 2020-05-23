@@ -1,0 +1,14 @@
+# kubetpl:syntax:$
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  namespace: meajudafi
+  name: worker-all-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: "standard"
+  resources:
+    requests:
+      storage: 1Gi

@@ -1,0 +1,47 @@
+# kubetpl:syntax:$
+# kubetpl:set:POSTGRES_DB=cvmData
+# kubetpl:set:POSTGRES_USER=postgres
+# kubetpl:set:POSTGRES_PASSWORD=temporary
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  namespace: meajudafi
+  name: postgres-statefulset
+spec:
+  selector:
+    matchLabels:
+      app: postgres
+  serviceName: postgres-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: postgres-pod
+        image: postgres:11-alpine
+        ports:
+        - containerPort: 5432
+          name: prot
+        volumeMounts:
+        - name: postgres-data
+          mountPath: /var/lib/postgresql/data
+        env:
+          - name: POSTGRES_DB
+            value: $POSTGRES_DB
+          - name: POSTGRES_USER
+            value: $POSTGRES_USER
+          - name: POSTGRES_PASSWORD
+            value: $POSTGRES_PASSWORD
+  volumeClaimTemplates:
+  - metadata:
+      name: postgres-data
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "standard"
+      resources:
+        requests:
+          storage: 300Gi      

@@ -1,0 +1,31 @@
+# kubetpl:syntax:$
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: meajudafi
+  name: swagger-deployment
+  labels:
+    app: swagger
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: swagger
+  template:
+    metadata:
+      labels:
+        app: swagger
+    spec:
+      containers:
+      - name: swagger-pod
+        image: swaggerapi/swagger-ui:v3.20.9  
+        ports:
+        - containerPort: 80
+        env:
+          - name: PORT
+            value: "80"
+          - name: API_URL
+            value: "/"
+          - name: BASE_URL
+            value: "/doc"

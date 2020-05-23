@@ -1,0 +1,17 @@
+# kubetpl:syntax:$
+
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: meajudafi
+  name: pgadmin-service
+  labels:
+    app: pgadmin
+spec:
+  ports:
+  - port: 80
+    targetPort: http
+    name: http 
+  selector:
+    app: pgadmin
+  type: LoadBalancer
