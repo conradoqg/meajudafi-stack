@@ -12,7 +12,7 @@ metadata:
   namespace: meajudafi
   name: worker-all-cronjob
 spec:
-  schedule: "15 18 * * *"
+  schedule: "0 12 * * *"
   failedJobsHistoryLimit: 2
   concurrencyPolicy: "Replace"
   successfulJobsHistoryLimit: 2

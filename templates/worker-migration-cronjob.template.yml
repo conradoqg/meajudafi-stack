@@ -1,0 +1,28 @@
+# kubetpl:syntax:$
+# kubetpl:set:POSTGRES_DB=cvmData
+# kubetpl:set:POSTGRES_USER=postgres
+# kubetpl:set:POSTGRES_PASSWORD=temporary
+
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  namespace: meajudafi
+  name: worker-migration-cronjob
+spec:  
+  schedule: "* * * * *"
+  failedJobsHistoryLimit: 2
+  concurrencyPolicy: "Replace"
+  successfulJobsHistoryLimit: 2
+  suspend: true
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: worker-migration-pod
+            image: conradoqg/cvm-fund-explorer-workers        
+            args: ["run",  "migrateWorker"]
+            env:
+            - name: CONNECTION_STRING
+              value: postgresql://$POSTGRES_USER:$POSTGRES_PASSWORD@postgres-statefulset-0.postgres-service:5432/$POSTGRES_DB                     
+          restartPolicy: OnFailure
