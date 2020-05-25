@@ -37,8 +37,7 @@ spec:
   - metadata:
       name: pgadmin-data
     spec:
-      accessModes: [ "ReadWriteOnce" ]
-      storageClassName: "standard"
+      accessModes: [ "ReadWriteOnce" ]      
       resources:
         requests:
-          storage: 300Gi      
+          storage: 1000Gi
