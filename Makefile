@@ -18,7 +18,8 @@ clean:
 
 .PHONY: install
 install:
-	kubectl apply -f $(spec_dir)/$(spec)
+	microk8s kubectl create namespace meajudafi
+	microk8s kubectl apply -f $(spec_dir)/$(spec)
 
 $(spec_dir): $(shell mkdir -p $(spec_dir))
 
