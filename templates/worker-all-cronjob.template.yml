@@ -27,9 +27,9 @@ spec:
             env:
               - name: CONNECTION_STRING
                 value: postgresql://$POSTGRES_USER:$POSTGRES_PASSWORD@postgres-statefulset-0.postgres-service:5432/$POSTGRES_DB          
-              - name: POSTGRES_READONLY_USERNAME
+              - name: READONLY_USERNAME
                 value: $POSTGRES_READONLY_USERNAME
-              - name: POSTGRES_READONLY_PASSWORD
+              - name: READONLY_PASSWORD
                 value: $POSTGRES_READONLY_PASSWORD
               - name: EOD_TOKEN
                 value: $EOD_TOKEN
