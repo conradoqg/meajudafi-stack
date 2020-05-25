@@ -7,7 +7,7 @@ data:
     worker_processes  5;  ## Default: 1
 
     events {
-    worker_connections  4096;  ## Default: 1024
+       worker_connections  4096;  ## Default: 1024
     }
 
     http {
@@ -33,6 +33,12 @@ data:
         }
     }
   nginx.dev.conf: |
+    worker_processes  1;
+
+    events {
+       worker_connections  1025;
+    }
+
     http {        
 
         server {
