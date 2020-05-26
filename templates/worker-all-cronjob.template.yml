@@ -12,7 +12,7 @@ metadata:
   namespace: meajudafi
   name: worker-all-cronjob
 spec:
-  schedule: "0 12 * * *"
+  schedule: "0 9 * * *"
   failedJobsHistoryLimit: 2
   concurrencyPolicy: "Replace"
   successfulJobsHistoryLimit: 2
@@ -23,7 +23,7 @@ spec:
           containers:
           - name: worker-migration-pod
             image: conradoqg/cvm-fund-explorer-workers        
-            args: ["run",  "all", "sampleData", "interestingFundsOnly"]
+            args: ["run",  "all"]
             env:
               - name: CONNECTION_STRING
                 value: postgresql://$POSTGRES_USER:$POSTGRES_PASSWORD@postgres-statefulset-0.postgres-service:5432/$POSTGRES_DB          
