@@ -21,7 +21,7 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
       - name: pgadmin-pod
-        image: dpage/pgadmin4:latest 
+        image: dpage/pgadmin4:4.20 
         ports:
         - containerPort: 80
           name: http
