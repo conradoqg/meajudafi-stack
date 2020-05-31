@@ -33,6 +33,8 @@ spec:
             value: $PGADMIN_DEFAULT_EMAIL
           - name: PGADMIN_DEFAULT_PASSWORD
             value: $PGADMIN_DEFAULT_PASSWORD
+          - name: PGADMIN_CONFIG_ENHANCED_COOKIE_PROTECTION
+            value: "False"
   volumeClaimTemplates:
   - metadata:
       name: pgadmin-data
