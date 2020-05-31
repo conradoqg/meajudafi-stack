@@ -3,6 +3,7 @@
 # kubetpl:set:POSTGRES_READONLY_USERNAME=readonly
 # kubetpl:set:POSTGRES_READONLY_PASSWORD=pJvykeLXdhCDFs99
 # kubetpl:set:CACHE_CONFIG=nginx.dev.conf
+# kubetpl:set:POSTGREST_PROXY=http://api.meajudafi.com.br/
 
 apiVersion: apps/v1
 kind: Deployment
@@ -33,10 +34,11 @@ spec:
             value: public
           - name: PGRST_DB_ANON_ROLE
             value: $POSTGRES_READONLY_USERNAME
-          - name: PGRST_SERVER_PROXY_URI
-            value: https://api.meajudafi.com.br/
+          - name: PGRST_OPENAPI_SERVER_PROXY_URI
+            value: $POSTGREST_PROXY
           - name: PGRST_DB_EXTRA_SEARCH_PATH
             value: public,private
+          - name: PGRST_
       - name: cache-pod
         image: nginx
         ports:
