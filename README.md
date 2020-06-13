@@ -1,6 +1,6 @@
 # meajudafi-stack
 
-Scripts, docker compose and caddy configuration to setup the stack of [meajudafi](meajudafi.com.br) web site.
+Scripts and templates to setup the stack of [meajudafi](meajudafi.com.br) web site.
 
 Technology and Requirements
 ----
@@ -11,15 +11,26 @@ This project uses the following stack:
 - [React](https://reactjs.org/) as the front-end framework;
 - [Postgrest](http://postgrest.org) as the back-end;
 - [PGAdmin](https://www.pgadmin.org/) as the database UI;
-- [Caddy](https://caddyserver.com/) as the proxy.
 - [Node.js](https://nodejs.org) for the background worker;
-- [Docker Container Crontab](https://github.com/conradoqg/meajudafi-docker-container-crontab) as worker scheduler.
+- [MicroK8s](https://microk8s.io/) as a kubernetes.
+
+It requires the following tool to be installed:
+
+- [MicroK8s](https://microk8s.io/) as a kubernetes, with DNS, ingress and a default storage class;
+- [Make](https://www.gnu.org/software/make/) as build tool;
+- [Kubetpl](https://github.com/shyiko/kubetpl) as k8s template rendering.
+
+To install do:
+
+```sh
+$ make
+$ sudo make install
+```
 
 ## Related repositories
 
 - [meajudafi-front-end](https://github.com/conradoqg/meajudafi-front-end)
 - [meajudafi-workers](https://github.com/conradoqg/meajudafi-workers)
-- [meajudafi-docker-container-crontab](https://github.com/conradoqg/meajudafi-docker-container-crontab)
 
 License
 ----
