@@ -4,7 +4,9 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   namespace: meajudafi
-  name: postgrest-ingress  
+  name: postgrest-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/enable-cors: "true"
 spec:
   rules:
   - host: api.meajudafi.com.br
