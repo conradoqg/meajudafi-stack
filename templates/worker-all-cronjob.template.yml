@@ -5,6 +5,7 @@
 # kubetpl:set:POSTGRES_READONLY_USERNAME=readonly
 # kubetpl:set:POSTGRES_READONLY_PASSWORD=pJvykeLXdhCDFs99
 # kubetpl:set:EOD_TOKEN=
+# kubetpl:set:SENTRY_DSN_TOKEN=
 
 apiVersion: batch/v1beta1
 kind: CronJob
@@ -33,6 +34,12 @@ spec:
                 value: $POSTGRES_READONLY_PASSWORD
               - name: EOD_TOKEN
                 value: $EOD_TOKEN
+              - name: SENTRY_DSN_TOKEN
+                value: $SENTRY_DSN_TOKEN
+              - name: JOB_NAME
+                valueFrom:
+                  fieldRef:
+                    fieldPath: metadata.name
             volumeMounts:
               - name: worker-all-data
                 mountPath: /cvm-fund-explorer-workers/db

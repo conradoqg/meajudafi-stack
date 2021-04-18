@@ -2,6 +2,7 @@
 # kubetpl:set:POSTGRES_DB=cvmData
 # kubetpl:set:POSTGRES_USER=postgres
 # kubetpl:set:POSTGRES_PASSWORD=temporary
+# kubetpl:set:SENTRY_DSN_TOKEN=
 
 apiVersion: batch/v1beta1
 kind: CronJob
@@ -25,4 +26,10 @@ spec:
             env:
             - name: CONNECTION_STRING
               value: postgresql://$POSTGRES_USER:$POSTGRES_PASSWORD@postgres-statefulset-0.postgres-service:5432/$POSTGRES_DB                     
+            - name: SENTRY_DSN_TOKEN
+              value: $SENTRY_DSN_TOKEN
+            - name: JOB_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
           restartPolicy: OnFailure
