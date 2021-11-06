@@ -6,13 +6,13 @@ metadata:
   namespace: meajudafi
   name: cors-anywhere-ingress
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/rewrite-target: /$$2
 spec:
   rules:
   - host: api.meajudafi.com.br
     http:
       paths:
-      - path: /proxy(/|$)(.*)
+      - path: /proxy(/|$$)(.*)
         backend:
           serviceName: cors-anywhere-service
           servicePort: 80
