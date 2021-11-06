@@ -1,0 +1,17 @@
+# kubetpl:syntax:$
+
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: meajudafi
+  name: cors-anywhere-service
+  labels:
+    app: cors-anywhere
+spec:
+  ports:
+  - port: 80
+    targetPort: 8080
+    name: http 
+  selector:
+    app: cors-anywhere
+  type: LoadBalancer

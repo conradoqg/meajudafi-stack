@@ -1,0 +1,16 @@
+# kubetpl:syntax:$
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  namespace: meajudafi
+  name: cors-anywhere-ingress
+spec:
+  rules:
+  - host: api.meajudafi.com.br
+    http:
+      paths:
+      - path: /proxy
+        backend:
+          serviceName: cors-anywhere-service
+          servicePort: 80

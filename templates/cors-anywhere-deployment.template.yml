@@ -1,0 +1,24 @@
+# kubetpl:syntax:$
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: meajudafi
+  name: cors-anywhere-deployment
+  labels:
+    app: cors-anywhere
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cors-anywhere
+  template:
+    metadata:
+      labels:
+        app: cors-anywhere
+    spec:
+      containers:
+      - name: cors-anywhere-pod
+        image: testcab/cors-anywhere
+        ports:
+        - containerPort: 8080        
