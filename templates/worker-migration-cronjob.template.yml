@@ -25,15 +25,15 @@ spec:
             args: ["run",  "migrateWorker"]
             env:
             - name: CONNECTION_STRING
-                value: postgresql://$POSTGRES_USER:$POSTGRES_PASSWORD@postgres-statefulset-0.postgres-service:5432/$POSTGRES_DB          
-              - name: READONLY_USERNAME
-                value: $POSTGRES_READONLY_USERNAME
-              - name: READONLY_PASSWORD
-                value: $POSTGRES_READONLY_PASSWORD
-              - name: SENTRY_DSN_TOKEN
-                value: $SENTRY_DSN_TOKEN
-              - name: JOB_NAME
-                valueFrom:
-                  fieldRef:
-                    fieldPath: metadata.name            
+              value: postgresql://$POSTGRES_USER:$POSTGRES_PASSWORD@postgres-statefulset-0.postgres-service:5432/$POSTGRES_DB          
+            - name: READONLY_USERNAME
+              value: $POSTGRES_READONLY_USERNAME
+            - name: READONLY_PASSWORD
+              value: $POSTGRES_READONLY_PASSWORD
+            - name: SENTRY_DSN_TOKEN
+              value: $SENTRY_DSN_TOKEN
+            - name: JOB_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name            
           restartPolicy: OnFailure
