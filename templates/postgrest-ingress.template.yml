@@ -7,7 +7,7 @@ metadata:
   name: postgrest-ingress
   annotations:
     nginx.ingress.kubernetes.io/enable-cors: "true"
-    nginx.ingress.kubernetes.io/access-control-allow-headers: "DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization,prefer"
+    nginx.ingress.kubernetes.io/cors-allow-headers: "Prefer,DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization"    
     nginx.ingress.kubernetes.io/cors-allow-origin: "https://meajudafi.com.br"
 spec:
   rules:

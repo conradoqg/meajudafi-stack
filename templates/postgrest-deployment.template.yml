@@ -38,7 +38,6 @@ spec:
             value: $POSTGREST_PROXY
           - name: PGRST_DB_EXTRA_SEARCH_PATH
             value: public,private
-          - name: PGRST_
       - name: cache-pod
         image: nginx
         ports:
