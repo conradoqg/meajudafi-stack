@@ -1,6 +1,6 @@
 # meajudafi-stack
 
-Scripts and templates to setup the stack of [meajudafi](meajudafi.com.br) web site.
+Scripts and templates to setup the stack of [meajudafi](https://meajudafi.com.br/) web site.
 
 Technology and Requirements
 ----
